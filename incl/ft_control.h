@@ -1,20 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_checks.h                                        :+:      :+:    :+:   */
+/*   ft_control.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amarzana <amarzana@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/22 17:23:28 by amarzana          #+#    #+#             */
-/*   Updated: 2022/08/22 17:31:00 by amarzana         ###   ########.fr       */
+/*   Created: 2022/08/30 14:22:34 by amarzana          #+#    #+#             */
+/*   Updated: 2022/08/30 14:23:05 by amarzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_CHECKS_H
-# define FT_CHECKS_H
 
-# include "ft_philo.h"
+#ifndef FT_CONTROL_H
+# define FT_CONTROL_H
 
-void	ft_checks(int argc, char **argv, t_control *control);
+typedef struct s_control
+{
+	int	philo_nb;
+	int	time_to_die;
+	int	time_to_eat;
+	int	time_to_sleep;
+	int	eats_nb;
+	int	error;
+}					t_control;
 
 #endif

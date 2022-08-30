@@ -1,18 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_checks.c                                        :+:      :+:    :+:   */
+/*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amarzana <amarzana@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/22 17:23:14 by amarzana          #+#    #+#             */
-/*   Updated: 2022/08/22 17:31:14 by amarzana         ###   ########.fr       */
+/*   Created: 2022/08/30 14:30:03 by amarzana          #+#    #+#             */
+/*   Updated: 2022/08/30 15:02:03 by amarzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../incl/ft_checks.h"
 
-void	ft_checks(int argc, char **argv, t_control *control)
-{
+#ifndef LIBFT_H
+# define LIBFT_H
 
-}
+long	ft_philo_atoi(const char *str);
+
+#endif

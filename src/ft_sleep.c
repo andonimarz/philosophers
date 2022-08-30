@@ -6,10 +6,9 @@
 /*   By: amarzana <amarzana@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 15:35:08 by amarzana          #+#    #+#             */
-/*   Updated: 2022/08/22 17:21:49 by amarzana         ###   ########.fr       */
+/*   Updated: 2022/08/30 13:29:34 by amarzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "../incl/ft_sleep.h"
 #include <sys/time.h>
@@ -23,7 +22,6 @@ long	get_time(void)
 	gettimeofday(&tv, NULL);
 	return (tv.tv_sec * 1000 + tv.tv_usec / 1000);
 }
-
 
 void	ft_sleep(int ms)
 {
