@@ -6,12 +6,14 @@
 /*   By: amarzana <amarzana@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 17:25:32 by amarzana          #+#    #+#             */
-/*   Updated: 2022/08/30 15:58:58 by amarzana         ###   ########.fr       */
+/*   Updated: 2022/08/30 18:21:06 by amarzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incl/ft_philo.h"
 #include <stdio.h>
+#include <pthread.h>
+#include <stdlib.h>
 
 /*--------BORRAR----------*/
 /*--------BORRAR----------*/
@@ -47,12 +49,40 @@ void	ft_get_args(int argc, char **argv, t_control *control)
 		control->eats_nb = ft_philo_atoi(argv[5]);
 }
 
+void	*routine()
+{
+	void	*r = NULL;
+
+	printf("Hilo\n");
+	return (r);
+}
+
 int	main(int argc, char **argv)
 {
-	t_control	control;
+	t_control		control;
+	int				i;
+	pthread_mutex_t	mutex;
+	pthread_t		*threads;
+	//t_thrd			thrd;
 
 	ft_init_ctr(&control);
 	ft_checks(argc, argv, &control);
 	ft_get_args(argc, argv, &control);
 	ft_print_ctr(&control);
+	threads = (pthread_t *)malloc(sizeof(pthread_t) * control.philo_nb);
+	pthread_mutex_init(&mutex, NULL);
+	i = 0;
+	while (i < control.philo_nb)
+	{
+		pthread_create(&threads[i], NULL, &routine, NULL);
+		i++;
+	}
+	i = 0;
+	while (i < control.philo_nb)
+	{
+		pthread_join(threads[i], NULL);
+		i++;
+	}
+	free (threads);
+	pthread_mutex_destroy(&mutex);
 }

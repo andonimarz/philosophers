@@ -6,7 +6,7 @@
 /*   By: amarzana <amarzana@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 14:22:34 by amarzana          #+#    #+#             */
-/*   Updated: 2022/08/30 14:23:05 by amarzana         ###   ########.fr       */
+/*   Updated: 2022/08/30 18:21:25 by amarzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,11 @@ typedef struct s_control
 	int	eats_nb;
 	int	error;
 }					t_control;
+
+/* typedef struct s_thrd
+{
+	pthread_t		*threads;
+	pthread_mutex_t	mutex;
+}					t_thrd; */
 
 #endif

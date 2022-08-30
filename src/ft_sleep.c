@@ -6,14 +6,14 @@
 /*   By: amarzana <amarzana@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 15:35:08 by amarzana          #+#    #+#             */
-/*   Updated: 2022/08/30 13:29:34 by amarzana         ###   ########.fr       */
+/*   Updated: 2022/08/30 16:31:22 by amarzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incl/ft_sleep.h"
 #include <sys/time.h>
 #include <unistd.h>
-//#include <stdio.h>
+#include <stdio.h>
 
 long	get_time(void)
 {
@@ -29,7 +29,7 @@ void	ft_sleep(int ms)
 
 	start_time = get_time();
 	while (get_time() - start_time < ms)
-		usleep(50);
+		usleep(10);
 }
 
 /* int	main(void)
@@ -39,7 +39,7 @@ void	ft_sleep(int ms)
 	long	start;
 
 	repeats = 1000;
-	sleep_time = 10;
+	sleep_time = 410;
 	start = get_time();
 	printf("Initial time:	%ld\n", start);
 	while (repeats-- > 0)
