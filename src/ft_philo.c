@@ -6,21 +6,20 @@
 /*   By: amarzana <amarzana@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 17:25:32 by amarzana          #+#    #+#             */
-/*   Updated: 2022/08/30 18:21:06 by amarzana         ###   ########.fr       */
+/*   Updated: 2022/08/31 17:09:23 by amarzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incl/ft_philo.h"
 #include <stdio.h>
-#include <pthread.h>
-#include <stdlib.h>
 
 /*--------BORRAR----------*/
+/*Borrar todo al terminar */
 /*--------BORRAR----------*/
 void	ft_print_ctr(t_control *control)
 {
 	printf ("Error = %d\n", control->error);
-	printf ("philo_nb = %d\n", control->philo_nb);
+	printf ("ph_nb = %d\n", control->ph_nb);
 	printf ("time_to_die = %d\n", control->time_to_die);
 	printf ("time_to_eat = %d\n", control->time_to_eat);
 	printf ("time_to_sleep = %d\n", control->time_to_sleep);
@@ -29,19 +28,20 @@ void	ft_print_ctr(t_control *control)
 /*--------BORRAR----------*/
 /*--------BORRAR----------*/
 
-void	ft_init_ctr(t_control *control)
+void	ft_init_ctr(t_control *control, t_thrd *th)
 {
 	control->error = 0;
-	control->philo_nb = 0;
+	control->ph_nb = 0;
 	control->time_to_die = 0;
 	control->time_to_eat = 0;
 	control->time_to_sleep = 0;
 	control->eats_nb = 0;
+	th->index = 0;
 }
 
 void	ft_get_args(int argc, char **argv, t_control *control)
 {
-	control->philo_nb = ft_philo_atoi(argv[1]);
+	control->ph_nb = ft_philo_atoi(argv[1]);
 	control->time_to_die = ft_philo_atoi(argv[2]);
 	control->time_to_eat = ft_philo_atoi(argv[3]);
 	control->time_to_sleep = ft_philo_atoi(argv[4]);
@@ -49,40 +49,48 @@ void	ft_get_args(int argc, char **argv, t_control *control)
 		control->eats_nb = ft_philo_atoi(argv[5]);
 }
 
-void	*routine()
+void	*routine(void *th)
 {
-	void	*r = NULL;
+	int	aux;
 
-	printf("Hilo\n");
-	return (r);
+	pthread_mutex_lock(&((t_thrd *)th)->mutex[*((t_thrd *)th)->index]);
+	aux = *((t_thrd *)th)->index;
+	printf("Hilo %d\n", aux);
+	free(((t_thrd *)th)->index);
+	pthread_mutex_unlock(&((t_thrd *)th)->mutex[aux]);
+	return (0);
 }
 
 int	main(int argc, char **argv)
 {
-	t_control		control;
-	int				i;
-	pthread_mutex_t	mutex;
-	pthread_t		*threads;
-	//t_thrd			thrd;
+	t_control	ctr;
+	t_thrd		th;
+	int			i;
+	int			j;
 
-	ft_init_ctr(&control);
-	ft_checks(argc, argv, &control);
-	ft_get_args(argc, argv, &control);
-	ft_print_ctr(&control);
-	threads = (pthread_t *)malloc(sizeof(pthread_t) * control.philo_nb);
-	pthread_mutex_init(&mutex, NULL);
+	ft_init_ctr(&ctr, &th);
+	ft_checks(argc, argv, &ctr);
+	ft_get_args(argc, argv, &ctr);
+	ft_print_ctr(&ctr);
+	i = ctr.ph_nb;
+	th.threads = (pthread_t *)malloc(sizeof(pthread_t) * i);
+	th.mutex = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t) * i);
 	i = 0;
-	while (i < control.philo_nb)
+	while (i < ctr.ph_nb)
 	{
-		pthread_create(&threads[i], NULL, &routine, NULL);
+		th.index = malloc(sizeof(int));
+		*th.index = i;
+		pthread_mutex_init(&th.mutex[i], NULL);
+		pthread_create(&th.threads[i], NULL, &routine, &th);
 		i++;
+		ft_sleep(1);
 	}
-	i = 0;
-	while (i < control.philo_nb)
+	j = 0;
+	while (j < ctr.ph_nb)
 	{
-		pthread_join(threads[i], NULL);
-		i++;
+		pthread_join(th.threads[j], NULL);
+		pthread_mutex_destroy(&th.mutex[j]);
+		j++;
 	}
-	free (threads);
-	pthread_mutex_destroy(&mutex);
+	free (th.threads);
 }

@@ -6,7 +6,7 @@
 /*   By: amarzana <amarzana@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 17:25:43 by amarzana          #+#    #+#             */
-/*   Updated: 2022/08/30 16:11:08 by amarzana         ###   ########.fr       */
+/*   Updated: 2022/08/31 15:08:22 by amarzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 # define FT_PHILO_H
 
 # include "ft_control.h"
+# include "ft_sleep.h"
 # include "libft.h"
-//# include "ft_sleep.h"
 
 /*----		BORRAR			----*/
 void	ft_print_ctr(t_control *control);
