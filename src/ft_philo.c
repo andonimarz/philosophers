@@ -6,7 +6,7 @@
 /*   By: amarzana <amarzana@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 17:25:32 by amarzana          #+#    #+#             */
-/*   Updated: 2022/08/31 17:09:23 by amarzana         ###   ########.fr       */
+/*   Updated: 2022/08/31 17:12:45 by amarzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,4 +93,5 @@ int	main(int argc, char **argv)
 		j++;
 	}
 	free (th.threads);
+	free (th.mutex);
 }
