@@ -6,7 +6,7 @@
 /*   By: amarzana <amarzana@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 17:25:32 by amarzana          #+#    #+#             */
-/*   Updated: 2022/08/31 17:12:45 by amarzana         ###   ########.fr       */
+/*   Updated: 2022/09/01 17:29:15 by amarzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,17 +47,21 @@ void	ft_get_args(int argc, char **argv, t_control *control)
 	control->time_to_sleep = ft_philo_atoi(argv[4]);
 	if (argc == 6)
 		control->eats_nb = ft_philo_atoi(argv[5]);
+	else
+		control->eats_nb = 0;
 }
 
-void	*routine(void *th)
+void	*ft_routine(void *th)
 {
-	int	aux;
+	int		aux;
+	t_thrd	*thread;
 
-	pthread_mutex_lock(&((t_thrd *)th)->mutex[*((t_thrd *)th)->index]);
-	aux = *((t_thrd *)th)->index;
+	thread = (t_thrd *)th;
+	pthread_mutex_lock(&thread->mutex[*thread->index]);
+	aux = *thread->index;
 	printf("Hilo %d\n", aux);
-	free(((t_thrd *)th)->index);
-	pthread_mutex_unlock(&((t_thrd *)th)->mutex[aux]);
+	free(thread->index);
+	pthread_mutex_unlock(&thread->mutex[aux]);
 	return (0);
 }
 
@@ -78,12 +82,12 @@ int	main(int argc, char **argv)
 	i = 0;
 	while (i < ctr.ph_nb)
 	{
-		th.index = malloc(sizeof(int));
+		th.index = calloc(1, sizeof(int));
 		*th.index = i;
 		pthread_mutex_init(&th.mutex[i], NULL);
-		pthread_create(&th.threads[i], NULL, &routine, &th);
+		pthread_create(&th.threads[i], NULL, &ft_routine, &th);
+		//pthread_detach(th.threads[i]);
 		i++;
-		ft_sleep(1);
 	}
 	j = 0;
 	while (j < ctr.ph_nb)

@@ -6,13 +6,13 @@
 #    By: amarzana <amarzana@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/30 15:52:13 by amarzana          #+#    #+#              #
-#    Updated: 2022/08/30 16:59:28 by amarzana         ###   ########.fr        #
+#    Updated: 2022/09/01 14:23:42 by amarzana         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = philo
 CC = gcc
-CFLAGS = -Wall -Werror -Wextra #-fsanitize=address -g3
+CFLAGS = -Wall -Werror -Wextra -g3 #-fsanitize=address
 OBJ = $(SRC:.c=.o)
 SRC_DIR = src
 
