@@ -26,11 +26,11 @@ typedef struct s_control
 	int	error;
 }					t_control;
 
-typedef struct s_thrd
+typedef struct s_philo
 {
-	int				*index;
-	pthread_t		*threads;
-	pthread_mutex_t	*mutex;
-}					t_thrd;
+	int				index;
+	pthread_t		thread;
+	pthread_mutex_t	mutex;
+}					t_philo;
 
 #endif

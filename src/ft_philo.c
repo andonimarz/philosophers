@@ -28,7 +28,7 @@ void	ft_print_ctr(t_control *control)
 /*--------BORRAR----------*/
 /*--------BORRAR----------*/
 
-void	ft_init_ctr(t_control *control, t_thrd *th)
+void	ft_init_ctr(t_control *control)
 {
 	control->error = 0;
 	control->ph_nb = 0;
@@ -36,7 +36,6 @@ void	ft_init_ctr(t_control *control, t_thrd *th)
 	control->time_to_eat = 0;
 	control->time_to_sleep = 0;
 	control->eats_nb = 0;
-	th->index = 0;
 }
 
 void	ft_get_args(int argc, char **argv, t_control *control)
@@ -51,51 +50,45 @@ void	ft_get_args(int argc, char **argv, t_control *control)
 		control->eats_nb = 0;
 }
 
-void	*ft_routine(void *th)
+void	*ft_routine(void *ph)
 {
-	int		aux;
-	t_thrd	*thread;
+	t_philo	*philo;
 
-	thread = (t_thrd *)th;
-	pthread_mutex_lock(&thread->mutex[*thread->index]);
-	aux = *thread->index;
-	printf("Hilo %d\n", aux);
-	free(thread->index);
-	pthread_mutex_unlock(&thread->mutex[aux]);
+	philo = (t_philo *)ph;
+	pthread_mutex_lock(&philo->mutex);
+	printf("Hilo %d\n", philo->index);
+	pthread_mutex_unlock(&philo->mutex);
 	return (0);
 }
 
 int	main(int argc, char **argv)
 {
 	t_control	ctr;
-	t_thrd		th;
+	t_philo		*ph;
 	int			i;
 	int			j;
 
-	ft_init_ctr(&ctr, &th);
+	ft_init_ctr(&ctr);
 	ft_checks(argc, argv, &ctr);
 	ft_get_args(argc, argv, &ctr);
 	ft_print_ctr(&ctr);
 	i = ctr.ph_nb;
-	th.threads = (pthread_t *)malloc(sizeof(pthread_t) * i);
-	th.mutex = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t) * i);
+	ph = (t_philo *)malloc(sizeof(t_philo) * i);
 	i = 0;
 	while (i < ctr.ph_nb)
 	{
-		th.index = calloc(1, sizeof(int));
-		*th.index = i;
-		pthread_mutex_init(&th.mutex[i], NULL);
-		pthread_create(&th.threads[i], NULL, &ft_routine, &th);
-		//pthread_detach(th.threads[i]);
+		ph[i].index = i;
+		pthread_mutex_init(&ph[i].mutex, NULL);
+		pthread_create(&ph[i].thread, NULL, &ft_routine, &ph[i]);
 		i++;
 	}
 	j = 0;
 	while (j < ctr.ph_nb)
 	{
-		pthread_join(th.threads[j], NULL);
-		pthread_mutex_destroy(&th.mutex[j]);
+		//pthread_detach(ph.threads[i]);
+		pthread_join(ph[j].thread, NULL);
+		pthread_mutex_destroy(&ph[j].mutex);
 		j++;
 	}
-	free (th.threads);
-	free (th.mutex);
+	free (ph);
 }
