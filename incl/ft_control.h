@@ -6,7 +6,7 @@
 /*   By: amarzana <amarzana@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 14:22:34 by amarzana          #+#    #+#             */
-/*   Updated: 2022/09/01 16:55:52 by amarzana         ###   ########.fr       */
+/*   Updated: 2022/09/03 17:26:34 by amarzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,19 +18,26 @@
 
 typedef struct s_control
 {
-	int	ph_nb;
-	int	time_to_die;
-	int	time_to_eat;
-	int	time_to_sleep;
-	int	eats_nb;
-	int	error;
+	int				ph_nb;
+	int				time_to_die;
+	int				time_to_eat;
+	int				time_to_sleep;
+	int				eats_nb;
+	int				error;
 }					t_control;
 
 typedef struct s_philo
 {
 	int				index;
 	pthread_t		thread;
-	pthread_mutex_t	mutex;
+	pthread_mutex_t	fork;
+	pthread_mutex_t	*other_fork;
+	int				ph_nb;
+	int				time_to_die;
+	int				time_to_eat;
+	int				time_to_sleep;
+	int				eats_nb;
+	long			start;
 }					t_philo;
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: amarzana <amarzana@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 15:35:08 by amarzana          #+#    #+#             */
-/*   Updated: 2022/08/30 16:31:22 by amarzana         ###   ########.fr       */
+/*   Updated: 2022/09/03 17:27:37 by amarzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include <unistd.h>
 #include <stdio.h>
 
-long	get_time(void)
+long	ft_get_time(void)
 {
 	struct timeval	tv;
 
@@ -27,8 +27,8 @@ void	ft_sleep(int ms)
 {
 	long	start_time;
 
-	start_time = get_time();
-	while (get_time() - start_time < ms)
+	start_time = ft_get_time();
+	while (ft_get_time() - start_time < ms)
 		usleep(10);
 }
 
@@ -48,5 +48,4 @@ void	ft_sleep(int ms)
 		printf("After time:	%ld\n", (get_time() - start));
 	}
 	return (0);
-}
- */
+} */

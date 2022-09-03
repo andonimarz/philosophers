@@ -6,7 +6,7 @@
 /*   By: amarzana <amarzana@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 17:23:14 by amarzana          #+#    #+#             */
-/*   Updated: 2022/08/30 15:17:12 by amarzana         ###   ########.fr       */
+/*   Updated: 2022/09/03 15:10:54 by amarzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void	ft_check_max_int(char **argv, t_control *control)
 
 void	ft_checks(int argc, char **argv, t_control *control)
 {
-	if (argc < 4 || argc > 6)
+	if (argc < 5 || argc > 6)
 		control->error = 1;
 	ft_check_arg_int(argv, control);
 	ft_check_max_int(argv, control);

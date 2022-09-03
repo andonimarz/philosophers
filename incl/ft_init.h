@@ -1,19 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_sleep.h                                         :+:      :+:    :+:   */
+/*   ft_init.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amarzana <amarzana@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/22 15:37:50 by amarzana          #+#    #+#             */
-/*   Updated: 2022/09/03 17:27:28 by amarzana         ###   ########.fr       */
+/*   Created: 2022/09/03 16:44:55 by amarzana          #+#    #+#             */
+/*   Updated: 2022/09/03 17:35:43 by amarzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_SLEEP_H
-# define FT_SLEEP_H
+#ifndef FT_INIT_H
+# define FT_INIT_H
 
-long	ft_get_time(void);
-void	ft_sleep(int ms);
+# include "ft_control.h"
+
+/*----		ft_init.c		----*/
+t_philo	*ft_init_philo(t_control ctr);
+void	ft_init_ctr(t_control *control);
+void	ft_get_args(int argc, char **argv, t_control *control);
 
 #endif

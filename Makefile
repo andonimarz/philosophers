@@ -6,7 +6,7 @@
 #    By: amarzana <amarzana@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/30 15:52:13 by amarzana          #+#    #+#              #
-#    Updated: 2022/09/01 14:23:42 by amarzana         ###   ########.fr        #
+#    Updated: 2022/09/03 17:37:47 by amarzana         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,7 @@ RESET 	= "\\x1b[37m"
 SRC = 	$(SRC_DIR)/ft_philo.c						\
 		$(SRC_DIR)/ft_checks.c						\
 		$(SRC_DIR)/ft_sleep.c						\
+		$(SRC_DIR)/ft_init.c						\
 		$(SRC_DIR)/libft.c
 
 .SILENT:
@@ -35,6 +36,7 @@ $(NAME): $(OBJ)
 	echo $(GREEN)Mandatory: Compilation done!$(RESET)
 
 clean:
+	rm -rf philo.dSYM
 	rm -f $(OBJ)
 	echo $(RED)Object files removed$(RESET)
 
