@@ -18,12 +18,14 @@
 
 typedef struct s_control
 {
+	pthread_mutex_t	mutex;
 	int				ph_nb;
 	int				time_to_die;
 	int				time_to_eat;
 	int				time_to_sleep;
 	int				eats_nb;
 	int				error;
+	long			start;
 }					t_control;
 
 typedef struct s_philo
@@ -32,12 +34,14 @@ typedef struct s_philo
 	pthread_t		thread;
 	pthread_mutex_t	fork;
 	pthread_mutex_t	*other_fork;
+	pthread_mutex_t	*mutex;
 	int				ph_nb;
 	int				time_to_die;
 	int				time_to_eat;
 	int				time_to_sleep;
 	int				eats_nb;
 	long			start;
+	long			time;
 }					t_philo;
 
 #endif

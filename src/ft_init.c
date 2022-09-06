@@ -20,6 +20,7 @@ void	ft_init_ctr(t_control *control)
 	control->time_to_eat = 0;
 	control->time_to_sleep = 0;
 	control->eats_nb = 0;
+	control->start = ft_get_time();
 }
 
 t_philo	*ft_init_philo(t_control ctr)
@@ -36,12 +37,13 @@ t_philo	*ft_init_philo(t_control ctr)
 			philos[i].other_fork = &philos[ctr.ph_nb - 1].fork;
 		else
 			philos[i].other_fork = &philos[i - 1].fork;
+		philos[i].mutex = &ctr.mutex;
 		philos[i].ph_nb = ctr.ph_nb;
 		philos[i].time_to_die = ctr.time_to_die;
 		philos[i].time_to_eat = ctr.time_to_eat;
 		philos[i].time_to_sleep = ctr.time_to_sleep;
 		philos[i].eats_nb = ctr.eats_nb;
-		philos[i].start = ft_get_time();
+		philos[i].start = ctr.start;
 		i++;
 	}
 	return (philos);

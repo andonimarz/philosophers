@@ -16,9 +16,9 @@ CFLAGS = -Wall -Werror -Wextra -g3 #-fsanitize=address
 OBJ = $(SRC:.c=.o)
 SRC_DIR = src
 
-GREEN 	= "\\x1b[32m"
-RED 	= "\\x1b[31m"
-RESET 	= "\\x1b[37m"
+GREEN 	= "\\033[92m"
+RED 	= "\\033[31m"
+RESET 	= "\\033[0m"
 
 SRC = 	$(SRC_DIR)/ft_philo.c						\
 		$(SRC_DIR)/ft_checks.c						\

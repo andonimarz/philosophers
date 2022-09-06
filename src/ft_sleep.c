@@ -29,7 +29,7 @@ void	ft_sleep(int ms)
 
 	start_time = ft_get_time();
 	while (ft_get_time() - start_time < ms)
-		usleep(10);
+		usleep(100);
 }
 
 /* int	main(void)
