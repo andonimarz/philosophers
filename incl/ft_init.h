@@ -6,7 +6,7 @@
 /*   By: amarzana <amarzana@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/03 16:44:55 by amarzana          #+#    #+#             */
-/*   Updated: 2022/09/03 17:35:43 by amarzana         ###   ########.fr       */
+/*   Updated: 2022/09/07 16:51:21 by amarzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include "ft_control.h"
 
 /*----		ft_init.c		----*/
-t_philo	*ft_init_philo(t_control ctr);
+t_philo	*ft_init_philo(t_control ctr, pthread_mutex_t mutex);
 void	ft_init_ctr(t_control *control);
 void	ft_get_args(int argc, char **argv, t_control *control);
 

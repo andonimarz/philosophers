@@ -6,7 +6,7 @@
 /*   By: amarzana <amarzana@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/03 16:43:54 by amarzana          #+#    #+#             */
-/*   Updated: 2022/09/03 17:35:01 by amarzana         ###   ########.fr       */
+/*   Updated: 2022/09/07 16:51:42 by amarzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	ft_init_ctr(t_control *control)
 	control->start = ft_get_time();
 }
 
-t_philo	*ft_init_philo(t_control ctr)
+t_philo	*ft_init_philo(t_control ctr, pthread_mutex_t mutex)
 {
 	int		i;
 	t_philo	*philos;
@@ -37,7 +37,7 @@ t_philo	*ft_init_philo(t_control ctr)
 			philos[i].other_fork = &philos[ctr.ph_nb - 1].fork;
 		else
 			philos[i].other_fork = &philos[i - 1].fork;
-		philos[i].mutex = &ctr.mutex;
+		philos[i].mutex = &mutex;
 		philos[i].ph_nb = ctr.ph_nb;
 		philos[i].time_to_die = ctr.time_to_die;
 		philos[i].time_to_eat = ctr.time_to_eat;

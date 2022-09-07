@@ -6,7 +6,7 @@
 /*   By: amarzana <amarzana@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 14:22:34 by amarzana          #+#    #+#             */
-/*   Updated: 2022/09/03 17:26:34 by amarzana         ###   ########.fr       */
+/*   Updated: 2022/09/07 17:17:36 by amarzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 
 typedef struct s_control
 {
-	pthread_mutex_t	mutex;
 	int				ph_nb;
 	int				time_to_die;
 	int				time_to_eat;
@@ -42,6 +41,8 @@ typedef struct s_philo
 	int				eats_nb;
 	long			start;
 	long			time;
+	long			limit_time;
+	int				mode;
 }					t_philo;
 
 #endif

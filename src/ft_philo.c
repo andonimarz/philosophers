@@ -6,7 +6,7 @@
 /*   By: amarzana <amarzana@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 17:25:32 by amarzana          #+#    #+#             */
-/*   Updated: 2022/09/03 17:34:51 by amarzana         ###   ########.fr       */
+/*   Updated: 2022/09/07 17:55:50 by amarzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,23 +39,26 @@
 long	ft_time(t_philo *philo)
 {
 	philo->time = ft_get_time() - philo->start;
+	philo->limit_time = ft_get_time() + philo->time_to_die;
 	return (philo->time);
 }
 
 void	ft_print_action(int mode, t_philo *philo)
 {
-	//pthread_mutex_lock(philo->mutex);
+	pthread_mutex_lock(philo->mutex);
 	if (mode == 0)
-		printf("%ld Philo %d has taken a fork\n", ft_time(philo), philo->index);
+		printf("%ld %d has taken a fork\n", philo->time, philo->index);
 	else if (mode == 1)
-		printf("%ld Philo %d started eating\n", ft_time(philo), philo->index);
+		printf("%ld %d is eating\n", philo->time, philo->index);
 	else if (mode == 2)
-		printf("%ld Philo %d left both forks\n", ft_time(philo), philo->index);
+		printf("%ld %d left both forks\n", philo->time, philo->index);
 	else if (mode == 3)
-		printf("%ld Philo %d started sleeping\n", ft_time(philo), philo->index);
+		printf("%ld %d is sleeping\n", philo->time, philo->index);
 	else if (mode == 4)
-		printf("%ld Philo %d is thinking\n", ft_time(philo), philo->index);
-	//pthread_mutex_unlock(philo->mutex);
+		printf("%ld %d is thinking\n", philo->time, philo->index);
+	else if (mode == 5)
+		printf("%ld %d died\n", philo->time, philo->index);
+	pthread_mutex_unlock(philo->mutex);
 }
 
 void	*ft_routine(void *ph)
@@ -63,7 +66,8 @@ void	*ft_routine(void *ph)
 	t_philo	*philo;
 
 	philo = (t_philo *)ph;
-	if (philo->index % 2 == 1 )
+	ft_time(philo);
+	if (philo->index % 2 == 1)
 		usleep(philo->time_to_eat - 20);
 	while (1)
 	{
@@ -85,24 +89,24 @@ void	*ft_routine(void *ph)
 
 int	main(int argc, char **argv)
 {
-	t_control	ctr;
-	t_philo		*ph;
-	int			i;
+	t_control		ctr;
+	t_philo			*ph;
+	pthread_mutex_t	mutex;
+	int				i;
 
 	ft_init_ctr(&ctr);
 	ft_checks(argc, argv, &ctr);
 	ft_get_args(argc, argv, &ctr);
-	i = ctr.ph_nb;
-	ph = ft_init_philo(ctr);
+	ph = ft_init_philo(ctr, mutex);
 	i = 0;
-	pthread_mutex_init(&ctr.mutex, NULL);
+	pthread_mutex_init(&mutex, NULL);
 	while (i < ctr.ph_nb)
 	{
 		pthread_mutex_init(&ph[i].fork, NULL);
 		pthread_create(&ph[i].thread, NULL, &ft_routine, &ph[i]);
-		//pthread_detach(ph[i].thread);
 		i++;
 	}
+	ft_check_loop(ph, &mutex);
 	i = 0;
 	while (i < ctr.ph_nb)
 	{

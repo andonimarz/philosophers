@@ -6,7 +6,7 @@
 /*   By: amarzana <amarzana@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 17:23:14 by amarzana          #+#    #+#             */
-/*   Updated: 2022/09/03 15:10:54 by amarzana         ###   ########.fr       */
+/*   Updated: 2022/09/07 17:57:13 by amarzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <limits.h>
+#include <stdio.h>
 
 void	ft_check_arg_int(char **argv, t_control *control)
 {
@@ -73,4 +74,24 @@ void	ft_checks(int argc, char **argv, t_control *control)
 	ft_check_arg_int(argv, control);
 	ft_check_max_int(argv, control);
 	ft_print_errors(control);
+}
+
+void	ft_check_loop(t_philo *ph, pthread_mutex_t *mutex)
+{
+	int		i;
+	long	time;
+
+	while (1)
+	{
+		i = 0;
+		while (i < ph[0].ph_nb)
+		{
+			if (ph[i].limit_time > ft_get_time())
+			{
+				pthread_mutex_lock(mutex);
+				time = ft_get_time() - ph[i].start;
+				printf("%ld %d died\n", time, ph[i].index);
+			}
+		}
+	}
 }
