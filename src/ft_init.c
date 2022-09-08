@@ -6,7 +6,7 @@
 /*   By: amarzana <amarzana@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/03 16:43:54 by amarzana          #+#    #+#             */
-/*   Updated: 2022/09/07 16:51:42 by amarzana         ###   ########.fr       */
+/*   Updated: 2022/09/08 17:03:33 by amarzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ t_philo	*ft_init_philo(t_control ctr, pthread_mutex_t mutex)
 		philos[i].time_to_sleep = ctr.time_to_sleep;
 		philos[i].eats_nb = ctr.eats_nb;
 		philos[i].start = ctr.start;
+		philos[i].limit_time = ctr.start + ctr.time_to_die;
+		philos[i].eats = 0;
 		i++;
 	}
 	return (philos);

@@ -6,7 +6,7 @@
 /*   By: amarzana <amarzana@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 14:22:34 by amarzana          #+#    #+#             */
-/*   Updated: 2022/09/07 17:17:36 by amarzana         ###   ########.fr       */
+/*   Updated: 2022/09/08 17:02:37 by amarzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,9 @@ typedef struct s_philo
 	int				time_to_sleep;
 	int				eats_nb;
 	long			start;
-	long			time;
 	long			limit_time;
-	int				mode;
+	int				is_dead;
+	int				eats;
 }					t_philo;
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: amarzana <amarzana@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 17:25:32 by amarzana          #+#    #+#             */
-/*   Updated: 2022/09/07 17:55:50 by amarzana         ###   ########.fr       */
+/*   Updated: 2022/09/08 17:10:49 by amarzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,6 @@
 //	
 //	ft_eat y ft_sleep
 //
-//	philo.mutex no funciona
-//
 /*--------BORRAR----------*/
 /* void	ft_print_ctr(t_control *control)
 {
@@ -36,29 +34,36 @@
 /*--------BORRAR----------*/
 /*--------BORRAR----------*/
 
-long	ft_time(t_philo *philo)
-{
-	philo->time = ft_get_time() - philo->start;
-	philo->limit_time = ft_get_time() + philo->time_to_die;
-	return (philo->time);
-}
-
 void	ft_print_action(int mode, t_philo *philo)
 {
+	long	time;
+
+	time = ft_get_time() - philo->start;
 	pthread_mutex_lock(philo->mutex);
 	if (mode == 0)
-		printf("%ld %d has taken a fork\n", philo->time, philo->index);
+		printf("%ld %d has taken a fork\n", time, philo->index);
 	else if (mode == 1)
-		printf("%ld %d is eating\n", philo->time, philo->index);
+		printf("%ld %d is eating\n", time, philo->index);
 	else if (mode == 2)
-		printf("%ld %d left both forks\n", philo->time, philo->index);
+		printf("%ld %d left both forks\n", time, philo->index);
 	else if (mode == 3)
-		printf("%ld %d is sleeping\n", philo->time, philo->index);
+		printf("%ld %d is sleeping\n", time, philo->index);
 	else if (mode == 4)
-		printf("%ld %d is thinking\n", philo->time, philo->index);
+		printf("%ld %d is thinking\n", time, philo->index);
 	else if (mode == 5)
-		printf("%ld %d died\n", philo->time, philo->index);
+		printf("%ld %d died\n", time, philo->index);
 	pthread_mutex_unlock(philo->mutex);
+}
+
+void	ft_eat(t_philo *philo)
+{
+	if (philo->eats < philo->eats_nb || philo->eats_nb == -1)
+	{
+		ft_print_action(1, philo);
+		ft_sleep(philo->time_to_eat);
+		philo->limit_time = ft_get_time() + philo->time_to_die;
+		philo->eats++;
+	}
 }
 
 void	*ft_routine(void *ph)
@@ -66,7 +71,7 @@ void	*ft_routine(void *ph)
 	t_philo	*philo;
 
 	philo = (t_philo *)ph;
-	ft_time(philo);
+	philo->limit_time = ft_get_time() + philo->time_to_die;
 	if (philo->index % 2 == 1)
 		usleep(philo->time_to_eat - 20);
 	while (1)
@@ -75,8 +80,7 @@ void	*ft_routine(void *ph)
 		ft_print_action(0, ph);
 		pthread_mutex_lock(&philo->fork);
 		ft_print_action(0, ph);
-		ft_print_action(1, ph);
-		ft_sleep(philo->time_to_eat);
+		ft_eat(ph);
 		ft_print_action(2, ph);
 		pthread_mutex_unlock(&philo->fork);
 		pthread_mutex_unlock(philo->other_fork);

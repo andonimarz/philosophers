@@ -6,7 +6,7 @@
 /*   By: amarzana <amarzana@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 17:23:14 by amarzana          #+#    #+#             */
-/*   Updated: 2022/09/07 17:57:13 by amarzana         ###   ########.fr       */
+/*   Updated: 2022/09/08 16:50:54 by amarzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,12 +86,16 @@ void	ft_check_loop(t_philo *ph, pthread_mutex_t *mutex)
 		i = 0;
 		while (i < ph[0].ph_nb)
 		{
-			if (ph[i].limit_time > ft_get_time())
+			if (ph[i].limit_time < ft_get_time())
 			{
 				pthread_mutex_lock(mutex);
 				time = ft_get_time() - ph[i].start;
-				printf("%ld %d died\n", time, ph[i].index);
+				printf("\033[31m" "%ld %d died\n" "\033[0m", time, ph[i].index);
+				//HAY QUE TERMINAR ESTA PARTE
+				free (ph);
+				exit(0);
 			}
+			i++;
 		}
 	}
 }
