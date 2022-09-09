@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_control.h                                       :+:      :+:    :+:   */
+/*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amarzana <amarzana@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 14:22:34 by amarzana          #+#    #+#             */
-/*   Updated: 2022/09/08 17:02:37 by amarzana         ###   ########.fr       */
+/*   Updated: 2022/09/09 18:37:00 by amarzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_CONTROL_H
-# define FT_CONTROL_H
+#ifndef STRUCTS_H
+# define STRUCTS_H
 
 # include <pthread.h>
 # include <stdlib.h>

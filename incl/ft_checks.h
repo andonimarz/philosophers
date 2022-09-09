@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_init.h                                          :+:      :+:    :+:   */
+/*   ft_checks.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amarzana <amarzana@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/03 16:44:55 by amarzana          #+#    #+#             */
-/*   Updated: 2022/09/09 18:37:40 by amarzana         ###   ########.fr       */
+/*   Created: 2022/09/09 18:33:57 by amarzana          #+#    #+#             */
+/*   Updated: 2022/09/09 18:55:08 by amarzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_INIT_H
-# define FT_INIT_H
+#ifndef FT_CHECKS_H
+# define FT_CHECKS_H
 
 # include "structs.h"
+# include "ft_prints.h"
 
-/*----		ft_init.c		----*/
-t_philo	*ft_init_philo(t_control ctr, pthread_mutex_t mutex);
-void	ft_init_ctr(t_control *control);
-void	ft_get_args(int argc, char **argv, t_control *control);
+/*----		ft_checks.c		----*/
+void	ft_checks(int argc, char **argv, t_control *control);
+int		ft_check_loop(t_philo *ph, pthread_mutex_t *mutex);
 
 #endif

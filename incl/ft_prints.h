@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_init.h                                          :+:      :+:    :+:   */
+/*   ft_prints.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amarzana <amarzana@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/03 16:44:55 by amarzana          #+#    #+#             */
-/*   Updated: 2022/09/09 18:37:40 by amarzana         ###   ########.fr       */
+/*   Created: 2022/09/09 18:46:49 by amarzana          #+#    #+#             */
+/*   Updated: 2022/09/09 18:52:20 by amarzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_INIT_H
-# define FT_INIT_H
+#ifndef FT_PRINTS_H
+# define FT_PRINTS_H
 
 # include "structs.h"
+# include "ft_sleep.h"
 
-/*----		ft_init.c		----*/
-t_philo	*ft_init_philo(t_control ctr, pthread_mutex_t mutex);
-void	ft_init_ctr(t_control *control);
-void	ft_get_args(int argc, char **argv, t_control *control);
+/*----		ft_prints.c		----*/
+void	ft_print_action(int mode, t_philo *philo);
+void	ft_print_errors(t_control	*control);
 
 #endif
