@@ -6,7 +6,7 @@
 /*   By: amarzana <amarzana@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 18:33:57 by amarzana          #+#    #+#             */
-/*   Updated: 2022/09/09 18:55:08 by amarzana         ###   ########.fr       */
+/*   Updated: 2022/09/09 19:22:01 by amarzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,6 @@
 
 /*----		ft_checks.c		----*/
 void	ft_checks(int argc, char **argv, t_control *control);
-int		ft_check_loop(t_philo *ph, pthread_mutex_t *mutex);
+int		ft_check_loop(t_philo *ph);
 
 #endif

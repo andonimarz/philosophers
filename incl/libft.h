@@ -6,10 +6,9 @@
 /*   By: amarzana <amarzana@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 14:30:03 by amarzana          #+#    #+#             */
-/*   Updated: 2022/08/30 15:02:03 by amarzana         ###   ########.fr       */
+/*   Updated: 2022/09/09 19:22:19 by amarzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #ifndef LIBFT_H
 # define LIBFT_H

@@ -6,7 +6,7 @@
 /*   By: amarzana <amarzana@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 18:46:26 by amarzana          #+#    #+#             */
-/*   Updated: 2022/09/09 18:54:10 by amarzana         ###   ########.fr       */
+/*   Updated: 2022/09/09 19:38:32 by amarzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,9 @@ void	ft_print_action(int mode, t_philo *philo)
 		printf("%ld %d is thinking\n", time, philo->index);
 	else if (mode == 5)
 		printf("%ld %d died\n", time, philo->index);
+	else if (mode == 6)
+		printf("\033[31m" "%ld %d died\n" "\033[0m", \
+							time, philo->index);
 	pthread_mutex_unlock(philo->mutex);
 }
 

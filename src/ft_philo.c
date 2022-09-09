@@ -6,7 +6,7 @@
 /*   By: amarzana <amarzana@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 17:25:32 by amarzana          #+#    #+#             */
-/*   Updated: 2022/09/09 18:58:01 by amarzana         ###   ########.fr       */
+/*   Updated: 2022/09/09 19:47:54 by amarzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@
 void	ft_eat(t_philo *philo)
 {
 	ft_print_action(1, philo);
-	ft_sleep(philo->time_to_eat);
 	philo->limit_time = ft_get_time() + philo->time_to_die;
 	philo->eats++;
+	ft_sleep(philo->time_to_eat);
 }
 
 void	*ft_routine(void *ph)
@@ -28,7 +28,7 @@ void	*ft_routine(void *ph)
 
 	philo = (t_philo *)ph;
 	philo->limit_time = ft_get_time() + philo->time_to_die;
-	if (philo->index % 2 == 1)
+	if (philo->index % 2 == 0)
 		usleep(philo->time_to_eat - 20);
 	while (philo->eats < philo->eats_nb || philo->eats_nb == -1)
 	{
@@ -55,20 +55,19 @@ int	main(int argc, char **argv)
 	pthread_mutex_t	mutex;
 	int				i;
 
+	pthread_mutex_init(&mutex, NULL);
 	ft_init_ctr(&ctr);
 	ft_checks(argc, argv, &ctr);
 	ft_get_args(argc, argv, &ctr);
 	ph = ft_init_philo(ctr, mutex);
 	i = 0;
-	pthread_mutex_init(&mutex, NULL);
 	while (i < ctr.ph_nb)
 	{
 		pthread_mutex_init(&ph[i].fork, NULL);
 		pthread_create(&ph[i].thread, NULL, &ft_routine, &ph[i]);
-		pthread_detach(&ph[i].thread);
 		i++;
 	}
-	if (ft_check_loop(ph, &mutex))
+	if (ft_check_loop(ph))
 	{
 		free(ph);
 		exit(0);
