@@ -6,7 +6,7 @@
 /*   By: amarzana <amarzana@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 17:23:14 by amarzana          #+#    #+#             */
-/*   Updated: 2022/09/09 19:21:02 by amarzana         ###   ########.fr       */
+/*   Updated: 2022/09/10 08:09:15 by amarzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,8 @@ int	ft_check_loop(t_philo *ph)
 	ph_done = 0;
 	while (1)
 	{
-		i = -1;
-		while (++i < ph[0].ph_nb)
+		i = 0;
+		while (i < ph[0].ph_nb)
 		{
 			if (ph[i].limit_time < ft_get_time())
 			{
@@ -81,11 +81,10 @@ int	ft_check_loop(t_philo *ph)
 					return (1);
 				}
 				else
-				{
 					if (++ph_done == ph[0].ph_nb)
 						return (0);
-				}
 			}
+			i++;
 		}
 	}
 	return (0);

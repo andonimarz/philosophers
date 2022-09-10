@@ -6,7 +6,7 @@
 /*   By: amarzana <amarzana@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 18:46:26 by amarzana          #+#    #+#             */
-/*   Updated: 2022/09/09 19:38:32 by amarzana         ###   ########.fr       */
+/*   Updated: 2022/09/10 10:06:58 by amarzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	ft_print_action(int mode, t_philo *philo)
 	pthread_mutex_unlock(philo->mutex);
 }
 
-void	ft_print_errors(t_control	*control)
+int	ft_print_errors(t_control	*control)
 {
 	if (control->error == 1)
 		printf("Error\nInvalid arg number\n");
@@ -48,5 +48,7 @@ void	ft_print_errors(t_control	*control)
 	else if (control->error == 4)
 		printf("Error\nAt least one philosopher\n");
 	if (control->error != 0)
-		exit(0);
+		return (1);
+	else
+		return (0);
 }

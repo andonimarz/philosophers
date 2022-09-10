@@ -6,7 +6,7 @@
 /*   By: amarzana <amarzana@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 17:25:32 by amarzana          #+#    #+#             */
-/*   Updated: 2022/09/10 08:01:23 by amarzana         ###   ########.fr       */
+/*   Updated: 2022/09/10 10:08:17 by amarzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,20 +70,20 @@ int	main(int argc, char **argv)
 	pthread_mutex_init(&mutex, NULL);
 	ft_init_ctr(&ctr);
 	ft_checks(argc, argv, &ctr);
-	ft_get_args(argc, argv, &ctr);
-	ph = ft_init_philo(ctr, mutex);
-	i = 0;
-	while (i < ctr.ph_nb)
+	if (ctr.error == 0)
 	{
-		pthread_mutex_init(&ph[i].fork, NULL);
-		pthread_create(&ph[i].thread, NULL, &ft_routine, &ph[i]);
-		i++;
+		ft_get_args(argc, argv, &ctr);
+		ph = ft_init_philo(ctr, mutex);
+		i = 0;
+		while (i < ctr.ph_nb)
+		{
+			pthread_mutex_init(&ph[i].fork, NULL);
+			pthread_create(&ph[i].thread, NULL, &ft_routine, &ph[i]);
+			pthread_detach(ph[i].thread);
+			i++;
+		}
+		ft_check_loop(ph);
+		free (ph);
 	}
-	if (ft_check_loop(ph))
-	{
-		free(ph);
-		exit(0);
-	}
-	ft_join(ph);
-	free (ph);
+	return (0);
 }
