@@ -6,7 +6,7 @@
 /*   By: amarzana <amarzana@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 17:25:32 by amarzana          #+#    #+#             */
-/*   Updated: 2022/09/09 19:47:54 by amarzana         ###   ########.fr       */
+/*   Updated: 2022/09/10 08:01:23 by amarzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,20 @@ void	*ft_routine(void *ph)
 		ft_sleep(philo->time_to_sleep);
 		ft_print_action(4, ph);
 	}
-
 	return (0);
+}
+
+void	ft_join(t_philo *ph)
+{
+	int	i;
+
+	i = 0;
+	while (i < ph[0].ph_nb)
+	{
+		pthread_join(ph[i].thread, NULL);
+		pthread_mutex_destroy(&ph[i].fork);
+		i++;
+	}
 }
 
 int	main(int argc, char **argv)
@@ -72,12 +84,6 @@ int	main(int argc, char **argv)
 		free(ph);
 		exit(0);
 	}
-	i = 0;
-	while (i < ctr.ph_nb)
-	{
-		pthread_join(ph[i].thread, NULL);
-		pthread_mutex_destroy(&ph[i].fork);
-		i++;
-	}
+	ft_join(ph);
 	free (ph);
 }
