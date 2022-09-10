@@ -6,7 +6,7 @@
 /*   By: amarzana <amarzana@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 18:46:49 by amarzana          #+#    #+#             */
-/*   Updated: 2022/09/10 10:08:39 by amarzana         ###   ########.fr       */
+/*   Updated: 2022/09/10 10:26:15 by amarzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,6 @@
 
 /*----		ft_prints.c		----*/
 void	ft_print_action(int mode, t_philo *philo);
-int		ft_print_errors(t_control	*control);
+void	ft_print_errors(t_control	*control);
 
 #endif
