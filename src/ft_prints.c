@@ -6,7 +6,7 @@
 /*   By: amarzana <amarzana@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 18:46:26 by amarzana          #+#    #+#             */
-/*   Updated: 2022/09/10 10:26:05 by amarzana         ###   ########.fr       */
+/*   Updated: 2022/09/10 10:53:02 by amarzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,18 +22,13 @@ void	ft_print_action(int mode, t_philo *philo)
 	if (mode == 0)
 		printf("%ld %d has taken a fork\n", time, philo->index);
 	else if (mode == 1)
-		printf("\033[92m" "%ld %d is eating\n" "\033[0m", time, philo->index);
+		printf("%ld %d is eating\n", time, philo->index);
 	else if (mode == 2)
-		printf("%ld %d left both forks\n", time, philo->index);
-	else if (mode == 3)
 		printf("%ld %d is sleeping\n", time, philo->index);
-	else if (mode == 4)
+	else if (mode == 3)
 		printf("%ld %d is thinking\n", time, philo->index);
-	else if (mode == 5)
+	else if (mode == 4)
 		printf("%ld %d died\n", time, philo->index);
-	else if (mode == 6)
-		printf("\033[31m" "%ld %d died\n" "\033[0m", \
-							time, philo->index);
 	pthread_mutex_unlock(philo->mutex);
 }
 

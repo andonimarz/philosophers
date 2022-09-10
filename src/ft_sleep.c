@@ -6,7 +6,7 @@
 /*   By: amarzana <amarzana@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 15:35:08 by amarzana          #+#    #+#             */
-/*   Updated: 2022/09/03 17:27:37 by amarzana         ###   ########.fr       */
+/*   Updated: 2022/09/10 10:48:10 by amarzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,21 +31,3 @@ void	ft_sleep(int ms)
 	while (ft_get_time() - start_time < ms)
 		usleep(100);
 }
-
-/* int	main(void)
-{
-	int		repeats;
-	int		sleep_time;
-	long	start;
-
-	repeats = 1000;
-	sleep_time = 410;
-	start = get_time();
-	printf("Initial time:	%ld\n", start);
-	while (repeats-- > 0)
-	{
-		ft_sleep(sleep_time);
-		printf("After time:	%ld\n", (get_time() - start));
-	}
-	return (0);
-} */

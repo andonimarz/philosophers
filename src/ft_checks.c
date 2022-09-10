@@ -6,7 +6,7 @@
 /*   By: amarzana <amarzana@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 17:23:14 by amarzana          #+#    #+#             */
-/*   Updated: 2022/09/10 08:09:15 by amarzana         ###   ########.fr       */
+/*   Updated: 2022/09/10 10:52:49 by amarzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ int	ft_check_loop(t_philo *ph)
 			{
 				if (ph[i].eats < ph[i].eats_nb || ph[i].eats_nb == -1)
 				{
-					ft_print_action(6, &ph[i]);
+					ft_print_action(4, &ph[i]);
 					return (1);
 				}
 				else
